@@ -56,10 +56,10 @@ public class MeiZiTuAdapter extends BaseQuickAdapter<MeiZiTu, BaseViewHolder> {
             return null;
         } else {
             return new GlideUrl(url, new LazyHeaders.Builder()
-                    .addHeader("Accept-Language", "zh-CN,zh;q=0.9,zh-TW;q=0.8")
-                    .addHeader("Host", "i.meizitu.net")
-                    .addHeader("Referer", "http://www.mzitu.com/")
-                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36")
+                    //.addHeader("Accept-Language", "zh-CN,zh;q=0.9,zh-TW;q=0.8")
+                    //.addHeader("Host", "i.meizitu.net")
+                    .addHeader("Referer", "https://www.mzitu.com/")
+                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36")
                     .build());
         }
     }

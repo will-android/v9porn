@@ -9,8 +9,8 @@ android {
         applicationId "com.u9porn"
         minSdkVersion parent.ext.minSdkVersion
         targetSdkVersion parent.ext.targetSdkVersion
-        versionCode 15
-        versionName "1.1.4"
+        versionCode 16
+        versionName "1.1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -118,7 +118,7 @@ dependencies {
     // add library
     implementation 'de.greenrobot:java-common:2.3.1'
     implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.1'
-    implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.0@aar'
+    implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.1@aar'
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
     implementation('com.github.bumptech.glide:glide:4.9.0') {

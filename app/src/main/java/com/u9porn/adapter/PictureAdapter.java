@@ -57,55 +57,33 @@ public class PictureAdapter extends PagerAdapter {
         final ProgressBar progressBar = contentView.findViewById(R.id.progressBar);
         //http://i.meizitu.net/2018/01/25c01.jpg
         String url = imageList.get(position);
-        if (url.contains("meizitu.net")) {
-            GlideApp.with(container).load(buildGlideUrl(url)).transition(new DrawableTransitionOptions().crossFade(300)).listener(new RequestListener<Drawable>() {
-                @Override
-                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                    progressBar.setVisibility(View.GONE);
-                    return false;
-                }
+        GlideApp.with(container).load(buildGlideUrl(url)).transition(new DrawableTransitionOptions().crossFade(300)).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                progressBar.setVisibility(View.GONE);
+                return false;
+            }
 
-                @Override
-                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                    progressBar.setVisibility(View.GONE);
-                    return false;
-                }
-            }).into(photoView);
-        } else {
-            GlideApp.with(container).load(buildGlide99MMUrl(url)).transition(new DrawableTransitionOptions().crossFade(300)).listener(new RequestListener<Drawable>() {
-                @Override
-                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                    progressBar.setVisibility(View.GONE);
-                    return false;
-                }
-
-                @Override
-                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                    progressBar.setVisibility(View.GONE);
-                    return false;
-                }
-            }).into(photoView);
-        }
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                progressBar.setVisibility(View.GONE);
+                return false;
+            }
+        }).into(photoView);
         // Now just add PhotoView to ViewPager and return it
         container.addView(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-//        photoView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onImageClickListener != null) {
-//                    onImageClickListener.onImageClick(v, position);
-//                }
-//            }
-//        });
-//        photoView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                if (onImageClickListener != null) {
-//                    onImageClickListener.onImageLongClick(v, position);
-//                }
-//                return true;
-//            }
-//        });
+        photoView.setOnClickListener(v -> {
+            if (onImageClickListener != null) {
+                onImageClickListener.onImageClick(v, position);
+            }
+        });
+        photoView.setOnLongClickListener(v -> {
+            if (onImageClickListener != null) {
+                onImageClickListener.onImageLongClick(v, position);
+            }
+            return true;
+        });
         Logger.t(TAG).d("instantiateItem");
         return contentView;
     }
@@ -148,9 +126,19 @@ public class PictureAdapter extends PagerAdapter {
         } else {
             return new GlideUrl(url, new LazyHeaders.Builder()
                     .addHeader("Accept-Language", "zh-CN,zh;q=0.9,zh-TW;q=0.8")
-                    .addHeader("Host", "i.meizitu.net")
-                    .addHeader("Referer", "http://www.mzitu.com/")
-                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36")
+                    // .addHeader("Host", "i.meizitu.net")
+                    .addHeader("Referer", "https://www.mzitu.com/204607")
+                    .addHeader(":authority", "i5.mmzztt.com")
+                    .addHeader(":path", "/2019/09/25b01.jpg")
+                    .addHeader(":method", "GET")
+                    .addHeader(":scheme", "https")
+                    .addHeader("accept", "image/webp,image/apng,image/*,*/*;q=0.8")
+                    .addHeader("accept-encoding", "gzip, deflate, br")
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("pragma", "no-cache")
+                    .addHeader("sec-fetch-mode", "no-cors")
+                    .addHeader("sec-fetch-site", "cross-site")
+                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36")
                     .build());
         }
     }
@@ -159,7 +147,7 @@ public class PictureAdapter extends PagerAdapter {
         if (TextUtils.isEmpty(url)) {
             return null;
         } else {
-            HttpUrl httpUrl=HttpUrl.parse(url);
+            HttpUrl httpUrl = HttpUrl.parse(url);
             return new GlideUrl(url, new LazyHeaders.Builder()
                     .addHeader("Accept-Language", "zh-CN,zh;q=0.9,zh-TW;q=0.8")
                     .addHeader("Host", httpUrl != null ? httpUrl.host() : "img.99mm.net")

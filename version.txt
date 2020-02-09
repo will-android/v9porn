@@ -1,12 +1,12 @@
 {
-"apkDownloadUrl": "https://raw.githubusercontent.com/techGay/v9porn/master/apk/v9porn-v1.1.4.apk",
+"apkDownloadUrl": "https://raw.githubusercontent.com/techGay/v9porn/master/apk/v9porn-v1.1.5.apk",
 "updateMessage": "
-最近很忙，403问题早就解决了，就是没时间完善代码，抽空写写算是完成了；如果你没有使用官方的用久地址，那么理论上不会（使用代理地址）触发google机器人验证，
-当前程序会自动检查403后跳转验证界面，请根据提示完成验证操作即可（可能需要多试几次才能成功），如果不能自动跳转，你也可用进入更多设置手动打开验证界面进行验证\n
+2020开年不利呀，希望早点过去吧
 
-1. 修复了使用官方用久地址403问题。\n
-2. 最低版本要求5.0以上，不在支持5.0以下系统（有需要可自行下载源码调整编译）。
+1. 修复了9*porn视频地址无法解析问题\n
+2. 修复了妹子图无法浏览问题\n
+（由于回老家了，原签名文件没法使用，当前版本暂时使用的新的签名代替，所以请卸载旧版本重装）
 ",
-"versionCode": 15,
-"versionName": "1.1.4"
+"versionCode": 16,
+"versionName": "1.1.5"
 }

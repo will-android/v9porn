@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.orhanobut.logger.Logger;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.u9porn.R;
@@ -65,7 +66,7 @@ public class PictureViewerActivity extends MvpActivity<PictureViewerView, Pictur
         goFullScreen();
         alertDialog = DialogUtils.initLoadingDialog(this, "解析图片列表中，请稍后...");
         init();
-        //initListener();
+        initListener();
     }
 
     @NonNull
@@ -82,23 +83,15 @@ public class PictureViewerActivity extends MvpActivity<PictureViewerView, Pictur
 //            //透明导航栏
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
-        imageList = getIntent().getStringArrayListExtra(Keys.KEY_INTENT_PICTURE_VIEWER_IMAGE_ARRAY_LIST);
+     //   imageList = getIntent().getStringArrayListExtra(Keys.KEY_INTENT_PICTURE_VIEWER_IMAGE_ARRAY_LIST);
         int currentPosition = getIntent().getIntExtra(Keys.KEY_INTENT_PICTURE_VIEWER_CURRENT_IMAGE_POSITION, 0);
         updateNumberText(currentPosition);
-        if (imageList == null) {
-            imageList = new ArrayList<>();
-        }
+        imageList = new ArrayList<>();
         pictureAdapter = new PictureAdapter(imageList);
         viewPager.setAdapter(pictureAdapter);
         viewPager.setCurrentItem(currentPosition);
         int id = getIntent().getIntExtra(Keys.KEY_INTENT_MEI_ZI_TU_CONTENT_ID, 0);
-        if (id > 0) {
-            presenter.listMeZiPicture(id, false);
-        }
-        Mm99 mm99 = (Mm99) getIntent().getSerializableExtra(Keys.KEY_INTENT_99_MM_ITEM);
-        if (mm99 != null) {
-            presenter.list99MmPicture(mm99.getId(), mm99.getContentUrl(), false);
-        }
+        presenter.listMeZiPicture(id, false);
         // View decorView = getWindow().getDecorView();
     }
 
@@ -248,7 +241,7 @@ public class PictureViewerActivity extends MvpActivity<PictureViewerView, Pictur
         this.imageList.clear();
         this.imageList.addAll(imageList);
         pictureAdapter.notifyDataSetChanged();
-
+        updateNumberText(0);
     }
 
     @Override

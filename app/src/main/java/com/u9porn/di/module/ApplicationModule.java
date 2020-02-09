@@ -22,6 +22,8 @@ import com.u9porn.data.prefs.PreferencesHelper;
 import com.u9porn.di.ApplicationContext;
 import com.u9porn.di.DatabaseInfo;
 import com.u9porn.di.PreferenceInfo;
+import com.u9porn.parser.v9porn.VideoPlayUrlParser;
+import com.u9porn.parser.v9porn.d20200206.VideoUrlParser;
 import com.u9porn.utils.AddressHelper;
 import com.u9porn.utils.AppCacheUtils;
 import com.u9porn.utils.MyHeaderInjector;
@@ -116,6 +118,12 @@ public abstract class ApplicationModule {
     @Singleton
     static PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
         return appPreferencesHelper;
+    }
+
+    @Provides
+    @Singleton
+    static VideoPlayUrlParser provideVideoPlayUrlParser(VideoUrlParser videoUrlParser){
+        return videoUrlParser;
     }
 
     @Provides
