@@ -6,7 +6,7 @@ package com.u9porn.data.network;
  */
 
 public interface Api {
-    String APP_GITHUB_DOMAIN = "https://github.com/";
+    String APP_GITHUB_DOMAIN = "http://www.91porn.com/";
     String APP_MEIZITU_DOMAIN = "http://www.mzitu.com/";
     String APP_99_MM_DOMAIN = "http://www.99mm.me/";
     String APP_PROXY_XICI_DAILI_DOMAIN = "http://www.xicidaili.com/";
